@@ -10,10 +10,14 @@ export const load = (async ({cookies}) => {
 
 
 export const actions = {
-    default: async ({ request, cookies }) => {
+    rename: async ({ request, cookies }) => {
         const formData = await request.formData()
         const boatName = formData.get('boatName') as string
 
         cookies.set('boatName', boatName)  
+    },
+    capitalize: async ({ cookies }) => {
+        const boatName = cookies.get('boatName') as string
+        cookies.set('boatName', boatName?.toUpperCase())
     }
 } satisfies Actions
